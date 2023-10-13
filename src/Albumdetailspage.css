@@ -1,0 +1,126 @@
+.song-thumbnail {
+    width: 70px;
+    height: 70px;
+    margin-right: 20px;
+    margin-top: 17px;
+    border-radius: 6px;
+}
+
+.song-details {
+    display: flex;
+    align-items: flex-start;
+}
+
+.song-info {
+    flex-grow: 1;
+    margin-top: 0;
+    width: 450px;
+}
+
+.imagefetch {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    box-shadow: rgb(53 149 176 / 44%) 0px 54px 55px, rgb(73 171 171 / 46%) 0px -12px 30px, rgb(202 112 112) 0px 4px 6px, rgb(219 118 22 / 57%) 0px 12px 13px, rgb(48 186 197 / 68%) 0px -3px 5px;
+}
+
+.thumbnaill {
+    width: 200px;
+    height: 200px;
+    border-radius: 6px;
+}
+
+.datee {
+    color: aqua;
+}
+
+.song-list {
+    list-style-type: decimal;
+    padding: 0;
+    margin-bottom: 150px;
+}
+
+.song-list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+    width: 95%;
+    border-bottom: 0.1px solid rgb(74, 73, 73);
+    cursor: pointer;
+}
+
+.song-list-item.selected {
+    border-color: #70aaa8;
+}
+
+.song-list-item:hover {
+    background-color: rgb(89, 88, 88);
+    opacity: 0.5;
+    color: white
+}
+
+.song-number {
+    width: 30px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.podcastss {
+    padding: 20px;
+    text-align: start;
+}
+
+.banner {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: 1010px;
+    width: 820px;
+    height: 282px;
+}
+
+.bann {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.playall {
+    padding: 15px;
+    height: 45px;
+    width: 85px;
+    background-color: aqua;
+    color: black;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+.sonnng {
+    padding-left: 250px;
+    width: 400px;
+}
+
+.albumdetailsmain::after,
+.albumdetailsmains::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-color: #070707;
+    opacity: .8;
+}
+
+.albumdetailsmain {
+    margin-top: 20px;
+    width: 1618px;
+    margin-left: 40px;
+}
+
+.albumdetailsmains {
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.library-header {
+    width: 200px;
+    height: 200px;
+}

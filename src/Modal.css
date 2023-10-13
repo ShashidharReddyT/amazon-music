@@ -1,0 +1,68 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 0;
+}
+
+.modal-content {
+    background: rgba(0, 0, 0, .3);
+    backdrop-filter: blur(30px);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #000;
+    border: rgba(255, 255, 255, .15) 1px solid;
+    position: fixed;
+    color: rgb(242, 236, 236);
+    top: 50%;
+    left: 50%;
+    transform: translate(0%, 15%);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.modal-open {
+    overflow: hidden;
+    filter: blur(4px);
+    transition: filter 0.3s ease;
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    cursor: pointer;
+}
+
+.action-link {
+    border-bottom: 0.1px solid rgb(74, 73, 73);
+    padding-left: 10px;
+    font-size: 18px;
+    padding-bottom: 30px;
+}
+
+/* Media Query for Small Screens */
+@media screen and (max-width: 768px) {
+    .modal-overlay {
+        align-items: flex-start;
+    }
+
+    .modal-content {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0;
+    }
+}

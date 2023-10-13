@@ -1,0 +1,128 @@
+/* Common styles for both mobile and PC */
+.mood-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+    grid-gap: 20px;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.mood-card {
+    border: 1px solid white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    background-image: linear-gradient(90deg, purple, lightyellow);
+    cursor: pointer;
+}
+
+.search-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 0fr));
+    grid-gap: 10px;
+    justify-content: center;
+    margin-top: 50px;
+    list-style: none;
+    margin-bottom: 120px;
+    text-align: center;
+}
+
+.romantic {
+    border: 1px solid white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    background-image: linear-gradient(90deg, rgb(21, 220, 231), rgb(231, 61, 24));
+}
+
+.search-bar1,
+button {
+    border: 2px solid #0deae1;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 20%;
+}
+
+.search-barr {
+
+    text-align: center;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.button3,
+.button4,
+.button5,
+.button6,
+.button7 {
+    border: 1px solid white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.button3 {
+    background-image: linear-gradient(90deg, rgb(101, 241, 190), rgb(82, 46, 20));
+}
+
+.button4 {
+    background-image: linear-gradient(90deg, rgb(101, 106, 241), rgb(225, 107, 23));
+}
+
+.button5 {
+    background-image: linear-gradient(90deg, rgb(101, 241, 145), rgb(225, 23, 110));
+}
+
+.button6 {
+    background-image: linear-gradient(90deg, rgb(241, 101, 225), rgb(198, 225, 23));
+}
+
+.button7 {
+    background-image: linear-gradient(90deg, rgb(182, 91, 48), rgb(33, 102, 50));
+}
+
+.moodsheading {
+    text-align: center;
+    padding: 10px;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 767px) {
+    .mood-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 20px;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .mood-card {
+        padding: 15px;
+        font-size: 20px;
+    }
+
+    .search-results {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 0fr));
+        grid-gap: 10px;
+        margin-top: 30px;
+        margin-bottom: 80px;
+    }
+
+    .romantic {
+        padding: 15px;
+    }
+
+    .button3,
+    .button4,
+    .button5,
+    .button6,
+    .button7 {
+        padding: 15px;
+    }
+}

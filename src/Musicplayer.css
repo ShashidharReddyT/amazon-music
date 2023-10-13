@@ -1,0 +1,147 @@
+.music-player {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #080808;
+  max-width: 100%;
+  margin: 0 auto;
+  color: white;
+  transition: transform 0.3s ease;
+  gap: 60px;
+}
+
+.musicbuttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  margin-left: 420px;
+  cursor: pointer;
+}
+
+.album-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 200px;
+}
+
+.album-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin: 10px;
+  box-shadow: rgb(221 223 20 / 56%) 0px 54px 55px, rgb(27 199 143 / 68%) 0px -12px 30px, rgb(193 83 224 / 76%) 0px 4px 6px, rgb(219 118 22 / 76%) 0px 12px 13px, rgb(7 159 226) 0px -3px 5px;
+}
+
+.album-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #e3d9d9;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.play-pause-button {
+  width: 70px;
+  height: 70px;
+  background-color: #182330;
+  color: #fff;
+  border: none;
+  border-radius: 18%;
+  cursor: pointer;
+  font-size: 50px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  box-shadow: rgb(29 29 184) 0px 50px 100px -20px, rgb(220 35 35) 0px 30px 60px -30px, rgb(190 221 251) 0px -2px 6px 0px inset;
+}
+
+.play-pause-button::after {
+  content: '';
+}
+
+.play-pause-button.pause::after {
+  content: '❚❚';
+}
+
+.play-pause-button.play::after {
+  content: '▶';
+}
+
+.play-pause-button:hover {
+  background-color: #0056b3;
+}
+
+.progress-bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #575454;
+  border-radius: 4px;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background-color: #eef7f7;
+  border-radius: 4px;
+  transition: width 0.2s ease-in-out;
+}
+
+.time-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 35px;
+}
+
+.current-time,
+.duration {
+  font-size: 14px;
+  color: #777;
+}
+
+.favorite-button {
+  padding: 35px;
+}
+
+.iconss {
+  font-size: 20px;
+}
+
+@media (max-width: 767px) {
+  .music-player {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  .play-pause-button {
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+  }
+
+  .musicbuttons {
+    display: flex;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+}

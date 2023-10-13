@@ -1,0 +1,302 @@
+.homepagee {
+  background-color: black;
+  margin: 100px 0 0 0;
+  padding-left: 50px;
+  font-family: Ember, Helvetica, Arial, "sans-serif";
+  color: white;
+}
+
+.artist-card {
+  width: 180px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+
+.buttonContainer {
+  align-items: flex-start;
+  display: flex;
+  gap: 25px;
+  justify-content: flex-end;
+  margin-right: 20px;
+  width: 225px;
+}
+
+.merging {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titles {
+  padding: 0px;
+  padding-left: 10px;
+}
+
+.artist-image {
+  max-width: 180px;
+  height: 180px;
+  border-radius: 10px;
+}
+
+.artist-name {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.load-more-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+
+.artist-card .buttons {
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.artist-card .buttons button {
+  background-color: transparent;
+  color: white;
+  border-radius: 50%;
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+}
+
+.artist-card:hover .buttons {
+  opacity: 1;
+
+}
+
+.featured-list-container {
+  margin: 0px;
+  padding: 1px;
+}
+
+.button-container {
+  display: flex;
+  margin-right: 25px;
+  align-items: center;
+}
+
+.show-less-button,
+.load-more-button,
+.show-all-button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 12px;
+}
+
+.show-all-button {
+  background-color: rgba(255, 255, 255, 0.15);
+  width: 85px;
+  height: 38px;
+  border-radius: 22px;
+  font-weight: 700;
+}
+
+
+.featured-list {
+  list-style: none;
+  padding: 0;
+  gap: 26px;
+  display: grid;
+  overflow-x: auto;
+  grid-auto-flow: column;
+  margin-top: -45px;
+}
+
+
+.featured-list1 {
+  list-style: none;
+  padding: 0;
+  gap: 26px;
+  display: grid;
+  overflow-x: auto;
+  grid-auto-flow: column;
+  margin-top: -30px;
+  margin-bottom: 100px;
+
+}
+
+.featured-list::-webkit-scrollbar {
+  height: 0;
+}
+
+.featured-list1::-webkit-scrollbar {
+  height: 0;
+}
+
+.featured-item-card {
+  flex-basis: calc(33.3333% - 20px);
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.featured-item-card img {
+  max-width: 100%;
+}
+
+.featured-item-name,
+.titlesss,
+.titless,
+.artistsname {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  text-align: start;
+  padding-left: 2px;
+}
+
+.titlesss {
+  margin-top: 6px;
+  font-weight: 400;
+}
+
+.titless {
+  margin-top: -12px;
+  font-weight: 400;
+}
+
+.artistsname {
+  margin-top: -15px;
+  font-weight: 300;
+  color: gray;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.demo-bg {
+  position: relative;
+}
+
+.demo-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  opacity: 1;
+  filter: blur(8px);
+}
+
+.image-icon {
+  opacity: 0.6;
+}
+
+/* Styles for tablets (768px and below) and mobile devices (414px and below) */
+@media only screen and (max-width: 768px) {
+  .homepagee {
+    padding-left: 20px;
+  }
+
+  .artist-card {
+    width: 140px;
+    margin: 10px;
+  }
+
+  .buttonContainer {
+    margin-right: 10px;
+  }
+
+  .featured-list {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .featured-item-card {
+    flex-basis: calc(50% - 20px);
+    margin: 10px;
+  }
+
+  .featured-item-name,
+  .titlesss,
+  .titless,
+  .artistsname {
+    max-width: 150px;
+  }
+}
+
+/* Styles for mobile devices (414px and below) */
+@media only screen and (max-width: 414px) {
+  .homepagee {
+    margin: 50px 0 0 0;
+    padding-left: 10px;
+  }
+
+  .artist-card {
+    width: 100px;
+    margin: 5px;
+  }
+
+  .buttonContainer {
+    margin-right: 5px;
+  }
+
+  .featured-item-card {
+    flex-basis: calc(100% - 20px);
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .featured-list {
+    display: flex;
+    flex-direction: row;
+    gap: 90px;
+  }
+
+  .featured-item-name,
+  .titlesss,
+  .titless,
+  .artistsname {
+    max-width: 120px;
+  }
+
+  .demo-bg::before {
+    filter: blur(4px);
+  }
+
+  .image-icon {
+    opacity: 0.4;
+  }
+
+}

@@ -1,0 +1,28 @@
+.song-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    margin: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.song-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.song-artist {
+    font-size: 14px;
+    color: #555;
+}
+
+
+.all-songs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    list-style-type: none;
+    padding: 0;
+}

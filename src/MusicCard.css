@@ -1,0 +1,37 @@
+.music-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.music-card-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 150px;
+
+
+}
+
+.music-card-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+
+
+.music-card-title {
+    font-size: 18px;
+    margin: 0;
+    width: 350px;
+}
+
+.music-card-artist {
+    font-size: 14px;
+    margin: 0;
+}

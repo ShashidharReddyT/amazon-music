@@ -1,0 +1,148 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
+import './Navbar.css';
+import Amazonmusic from '../src/Assets/Amazon-music.png';
+import HomeLogo from '../src/Assets/HomeLogo.svg';
+import Podcasts from '../src/Assets/Podcasts.svg';
+import Library from '../src/Assets/Library.svg';
+import userlogo from '../src/Assets/UserLogo.svg';
+import Searchlogo from '../src/Assets/Searchlogo.svg';
+import Librarydropdownlogo from '../src/Assets/Librarydropdownlogo.svg';
+
+const Navbar = React.memo(() => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [search] = useState('');
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const navigate = useNavigate();
+  const menuContainerRef = useRef(null);
+  const location = useLocation();
+  const [searchInput, setSearchInput] = useState('');
+
+  useEffect(() => {
+    const closeMenuOnOutsideClick = (e) => {
+      if (menuContainerRef.current && !menuContainerRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', closeMenuOnOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', closeMenuOnOutsideClick);
+    };
+  }, []);
+
+
+  const toggleUserMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const addLocalStorage = () => {
+    const history = JSON.parse(localStorage.getItem('history')) || [];
+    if (!history.includes(search.trim())) {
+      history.push(search.trim());
+    }
+    localStorage.setItem('history', JSON.stringify(history));
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim() === '') {
+      return;
+    }
+    addLocalStorage();
+    navigate(`/search/${search.trim()}`);
+  };
+
+
+  const handleSearchBarClick = () => {
+    return <Link to="/search" />;
+  };
+
+  return (
+    <header>
+      <nav className="navbar">
+        <div className="logo">
+          <Link to="/">
+            <img src={Amazonmusic} alt="Amazonmusic" className="logo" />
+          </Link>
+        </div>
+
+        <ul className="nav-linksdiv">
+          <div className="nav-links">
+            <Link
+              to="/"
+              className={`hover-home-button ${location.pathname === '/' ? 'active' : ''}`}
+            >
+              <img src={HomeLogo} alt="homelogo" className="homelogo" />
+              HOME
+            </Link>
+          </div>
+
+          <div className="nav-links">
+            <Link
+              to="/podcasts"
+              className={`hover-home-button ${location.pathname === '/podcasts' ? 'active' : ''}`}
+            >
+              <img src={Podcasts} alt="podcasts" />
+              PODCASTS
+            </Link>
+          </div>
+
+          <div className="nav-links">
+            <Link
+              to="/library"
+              className={`hover-home-button ${location.pathname === '/library' ? 'active' : ''}`}
+            >
+              <img src={Library} alt="library" />
+              LIBRARY{'\u00A0'}
+              <img src={Librarydropdownlogo} alt="librarydropdown" className="dropdowns" />
+            </Link>
+            <ul className="dropdown-content">
+              <li>
+                <p>Music</p>
+              </li>
+              <li>
+                <p>Podcasts</p>
+              </li>
+            </ul>
+          </div>
+        </ul>
+
+        <div className={`search-bar ${isSearchExpanded ? 'expanded' : ''}`}>
+          <Link to="/search">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="search-input"
+              value={searchInput}
+              onChange={(e) => {
+                setSearchInput(e.target.value);
+              }}
+              onClick={handleSearchBarClick}
+            />
+
+          </Link>
+          <button type="button" className="search-button" onClick={handleSearch}>
+            <img src={Searchlogo} alt="searchlogo" className="searchicon" />
+          </button>
+        </div>
+
+        <div className="menu-container" ref={menuContainerRef}>
+          <button className="user-icon" onClick={toggleUserMenu}>
+            <img src={userlogo} alt="UserIcon" />
+          </button>
+          {menuOpen && (
+            <div className="menu">
+              <Link to="signup">Signup</Link>
+              <Link to="login">Login</Link>
+              <Link to="subscribe">Subscriptions</Link>
+            </div>
+          )}
+        </div>
+      </nav>
+    </header>
+  );
+});
+
+export default Navbar;
