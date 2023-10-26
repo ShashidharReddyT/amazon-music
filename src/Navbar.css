@@ -88,8 +88,8 @@
 .nav-links li:hover {
   background-color: rgb(89, 88, 88);
   opacity: 0.5;
-  height: 50px;
-  padding-top: 1px;
+  padding: 5px;
+  padding-left: 10px;
 }
 
 .hover-home-button:hover {
@@ -108,35 +108,23 @@
   transition: all 0.3s;
   margin-left: 750px;
   position: fixed;
-  right: 120px;
+  right: 100px;
 
 }
 
-
-.search-bar.expanded {
-  flex-direction: row;
-  width: 100%;
-  transition: all 0.3s;
-}
 
 .search-input {
-  width: 200px;
-  padding: 8px 10px;
+  width: 225px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 20px;
   background-color: white;
-  color: #de1c1c;
+  color: #f6f1f1;
   transition: all 0.3s;
 
 }
 
-.search-input:focus {
-  width: 300px;
-  background-color: #0e0e0e;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-left: 300px;
-}
+
 
 .search-button {
   background-color: transparent;
@@ -150,9 +138,9 @@
   width: 20px;
   height: 20px;
   color: #fff;
-  margin-left: 175px;
-  margin-top: -11px;
-  position: absolute;
+  position: fixed;
+  right: 130px;
+  top: 29px;
 }
 
 .no-results-message {
@@ -181,9 +169,9 @@
   gap: 34px;
   border-radius: 10px;
   margin-top: 340px;
-  font-size: 18px;
   z-index: 100;
   backdrop-filter: blur(10px);
+  font-size: 20px;
 }
 
 .menu a {
@@ -196,7 +184,7 @@
 }
 
 .user-dropdown {
-  display: none;
+
   position: absolute;
   top: 100%;
   right: 0;
@@ -211,7 +199,7 @@
 }
 
 .user-menu:hover .user-dropdown {
-  display: block;
+  display: flex;
 }
 
 .user-icon {
@@ -236,25 +224,27 @@
   position: relative;
 }
 
+/* Style the dropdown menu */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #101010;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgba(7, 7, 7, 1);
+  border: 0.1px solid rgb(74, 73, 73);
+  backdrop-filter: blur(30px);
   min-width: 150px;
   z-index: 1;
   font-size: 20px;
   padding-left: 15px;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin-top: 0px;
+  margin-left: 20px;
 }
 
+/* Style the dropdown menu links */
 .dropdown-content a {
   text-decoration: none;
-  color: #333;
+  color: #f01313;
   display: block;
 }
 
@@ -263,12 +253,32 @@
   padding-left: 10px;
 }
 
+/* Hover effect for dropdown menu items */
 .dropdown-content a:hover {
-  background-color: #f0f0f0;
+  background-color: #12b5b8;
+  position: relative;
+
 }
 
+/* Show the dropdown menu when hovering over the parent */
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.navbar1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background-color: rgba(7, 7, 7, 0.6);
+  color: #fff;
+  height: 71.22px;
+  padding: 3px;
+  z-index: 0;
+  backdrop-filter: blur(30px);
+  border-bottom: 0.1px solid rgb(74, 73, 73);
 }
 
 /* Add a media query for mobile screens */
@@ -328,13 +338,13 @@
     width: 15px;
     height: 15px;
     margin-left: 135px;
-    margin-top: -6px;
+    margin-top: -8px;
   }
 
   .user-icon {
     position: fixed;
     top: 2px;
-    right: 5px;
+    right: 20px;
   }
 }
 
@@ -360,8 +370,34 @@
   }
 }
 
-@media (max-width: 600px) {
-  .search-bar {
+@media (max-width: 414px) {
+  .search-input {
+    width: 10px;
+    position: fixed;
+    top: 10px;
+    right: 73px;
+  }
+
+  .nav-linksdiv {
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+  }
+
+  .dropdowns {
     display: none;
+  }
+
+  .logo {
+    width: 85px;
+  }
+
+  .user-icon {
+    position: fixed;
+    right: 2px;
+  }
+
+  .search-button img {
+    width: 20px;
   }
 }

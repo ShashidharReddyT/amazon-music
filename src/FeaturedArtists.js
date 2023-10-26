@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './HomePage.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Loading from './Loading';
 import Lessthan from "../src/Assets/Lessthan.svg";
 import Greaterthan from "../src/Assets/Greaterthan.svg";
 import Modal from './Modal';
 import { IoIosArrowForward } from "react-icons/io";
+import ForwardButtonLogo from '../src/Assets/ForwardButtonLogo.svg';
+
 
 function FeaturedArtists() {
     const [featuredArtists, setFeaturedArtists] = useState([]);
@@ -14,6 +16,12 @@ function FeaturedArtists() {
     const [currentArtist, setCurrentArtist] = useState(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const navigate = useNavigate();
+    const scrollContainerRef = useRef(null);
+
+    const [showAllClicked, setShowAllClicked] = useState(false);
+    const totalSongs = 100;
+
+
 
     const navigateToAlbumDetails = (artist) => {
         navigate(`/artist/${artist._id}`, {
@@ -21,8 +29,6 @@ function FeaturedArtists() {
         });
     };
 
-    const itemsPerPage = 3;
-    const totalArtists = 100;
 
     useEffect(() => {
         const fetchDataWithDelay = async () => {
@@ -54,16 +60,18 @@ function FeaturedArtists() {
         fetchDataWithDelay();
     }, []);
 
-    const loadMore = () => {
-        setVisibleArtists(Math.min(visibleArtists + itemsPerPage, totalArtists));
-    };
+    const handleScroll = (scrollDirection) => {
+        const scrollContainer = scrollContainerRef.current;
 
-    const showAll = () => {
-        setVisibleArtists(totalArtists);
-    };
-
-    const showLess = () => {
-        setVisibleArtists(10);
+        if (scrollContainer) {
+            const currentScrollLeft = scrollContainer.scrollLeft;
+            const scrollDistance = scrollDirection === 'left' ? -600 : 600;
+            const targetScrollLeft = currentScrollLeft + scrollDistance;
+            scrollContainer.scrollTo({
+                left: targetScrollLeft,
+                behavior: "smooth",
+            });
+        }
     };
 
     const openModal = (artist) => {
@@ -75,39 +83,44 @@ function FeaturedArtists() {
         setCurrentArtist(null);
         setModalIsOpen(false);
     };
+    const showAll = () => {
+        setVisibleArtists(totalSongs);
+        setShowAllClicked(true);
+    };
+
+    const showLess = () => {
+        setVisibleArtists(12);
+        setShowAllClicked(false);
+    };
+
 
     return (
         <div className="featured-list-container">
             <div className='merging'>
                 <h2 className='titles'>Artists</h2>
                 <div className="button-container">
-                    {visibleArtists > 0 && (
-                        <button onClick={showLess} className="show-less-button">
-                            <img src={Lessthan} alt='less' />
-                        </button>
-                    )}
-                    {visibleArtists < totalArtists && (
-                        <button onClick={loadMore} className="load-more-button">
-                            <img src={Greaterthan} alt='greater' />
-                        </button>
-                    )}
-                    {visibleArtists < totalArtists && (
-                        <button onClick={showAll} className="show-all-button">
-                            SEE{'\u00A0'}ALL
-                        </button>
-                    )}
+                    <button className="show-less-button" onClick={() => handleScroll('left')}>
+                        <img src={Lessthan} alt='less' />
+                    </button>
+                    <button className="load-more-button" onClick={() => handleScroll('right')}>
+                        <img src={Greaterthan} alt='great' />
+                    </button>
+
+                    <Link to='/seeallsongs4' className='show-all-button'>SEE ALL</Link>
+
                 </div>
             </div>
             {loading ? (
                 <Loading />
             ) : (
-                <ul className="featured-list1">
+                <div ref={scrollContainerRef} className="featured-list1">
                     {featuredArtists.slice(0, visibleArtists).map((artist, index) => (
                         <li key={index} className="artist-card">
                             <div className="buttons">
-                                <button className="heart-button">❤️</button>
-                                <button className="play-button" onClick={() => navigateToAlbumDetails(artist)}><IoIosArrowForward /></button>
-                                <button className="dots-button" onClick={() => openModal(artist)}>⋯</button>
+                                {/* <button className="heart-button">❤️</button> */}
+                                <button className="playbutton" onClick={() => navigateToAlbumDetails(artist)}>
+                                    <img src={ForwardButtonLogo} alt="Forward" className="playbutton-image" />
+                                </button>                                {/* <button className="dots-button" onClick={() => openModal(artist)}>⋯</button> */}
                             </div>
                             {artist.image && (
                                 <img src={artist.image} alt={artist.name} className="artist-image" />
@@ -121,7 +134,7 @@ function FeaturedArtists() {
                             )}
                         </li>
                     ))}
-                </ul>
+                </div>
             )}
 
             <Modal

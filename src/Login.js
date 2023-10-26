@@ -18,10 +18,14 @@ function Login() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        // Checking if there is a stored authToken in sessionStorage
+        // Checking if there is an authentication token in sessionStorage
         const authToken = sessionStorage.getItem("authToken");
         if (authToken) {
+            // Set the user as authenticated
             setIsLoggedIn(true);
+            // Optionally, you can retrieve user information here as well
+            const userName = sessionStorage.getItem("userInfo");
+            setUserInfo({ email: userName });
         }
     }, []);
 
@@ -127,11 +131,11 @@ function Login() {
 
                         <label>
                             <strong>Password</strong>
-                            <span>
+                            {/* <span>
                                 <a href="#1" id="password">
                                     Forgot your password?
                                 </a>
-                            </span>
+                            </span> */}
                             <br />
                             <input
                                 type="password"

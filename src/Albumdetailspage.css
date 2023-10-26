@@ -38,15 +38,18 @@
     list-style-type: decimal;
     padding: 0;
     margin-bottom: 150px;
+    margin-right: 10px;
 }
 
 .song-list-item {
     display: flex;
     align-items: center;
     margin-bottom: 35px;
-    width: 95%;
+    width: 100%;
     border-bottom: 0.1px solid rgb(74, 73, 73);
     cursor: pointer;
+    justify-content: space-between;
+    gap: 18px;
 }
 
 .song-list-item.selected {
@@ -111,16 +114,47 @@
 
 .albumdetailsmain {
     margin-top: 20px;
-    width: 1618px;
-    margin-left: 40px;
+    width: 100%;
+
 }
+
 
 .albumdetailsmains {
     margin-left: 40px;
     margin-top: 20px;
 }
 
+.albumdetailsmain1 {
+    margin-top: 20px;
+    width: 1618px;
+    margin-left: 40px;
+    height: 680px;
+    background-position: center;
+}
+
+.albumdetailsmain1::after,
+.albumdetailsmains1::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-color: #070707;
+    opacity: .9;
+}
+
 .library-header {
     width: 200px;
     height: 200px;
+}
+
+.remove-favorite-button {
+    cursor: pointer;
+
+}
+
+
+.artiststitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

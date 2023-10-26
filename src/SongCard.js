@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import Musicplayer from './Musicplayer';
+
 function SongCard({ songData }) {
     const [currentSong, setCurrentSong] = useState(null);
 
     const playSong = (song) => {
-        setCurrentSong(song);
-    };
-
-    const closePlayer = () => {
-        setCurrentSong(null);
+        if (currentSong === song) {
+            // If the same song is clicked, close the player
+            setCurrentSong(null);
+        } else {
+            // If a new song is clicked, close the previous player and open the new one
+            setCurrentSong(song);
+        }
     };
 
     return (
         <li className="artist-card">
             <div className="buttons">
-                <button className="heart-button" >
+                <button className="heart-button">
                     ❤️
                 </button>
                 <button
@@ -23,7 +26,7 @@ function SongCard({ songData }) {
                 >
                     {currentSong === songData ? '⏸️' : '▶'}
                 </button>
-                <button className="dots-button" >
+                <button className="dots-button">
                     ⋯
                 </button>
             </div>
@@ -39,7 +42,6 @@ function SongCard({ songData }) {
                     albumImage={songData.thumbnail}
                     title={songData.title}
                     songId={songData._id}
-                    onClose={closePlayer}
                 />
             )}
         </li>

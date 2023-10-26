@@ -3,14 +3,19 @@ import { useLocation } from 'react-router-dom';
 import Musicplayer from './Musicplayer';
 import './Albumdetailspage.css';
 
+import { FaHeart } from 'react-icons/fa';
+import { useUser } from './UserProvider';
+
 function AlbumDetails() {
     const { state } = useLocation();
     const itemData = state && state.itemData;
-
     const [selectedSong, setSelectedSong] = useState(null);
     const [artistNames, setArtistNames] = useState([]);
     const [audioDuration, setAudioDuration] = useState(0);
     const [songIndex, setSongIndex] = useState(null);
+    const [isFavSong, setIsFavSong] = useState(false);
+    const { isUserLoggedIn, token } = useUser();
+
 
     const fetchAudioDuration = () => {
         const audioElement = document.getElementById('audioElement');
@@ -82,8 +87,50 @@ function AlbumDetails() {
         color: 'white',
         position: 'relative',
         isolation: 'isolate',
-        left: '-50px',
+
         top: '-20px',
+        width: '100%'
+    };
+    const addToFavorites = (songId) => {
+        // Find the song in artistNames array by songId
+        const updatedArtistNames = artistNames.map((song) => {
+            if (song._id === songId) {
+                // Toggle the isFavorite property
+                return { ...song, isFavorite: !song.isFavorite };
+            }
+            return song;
+        });
+
+        setArtistNames(updatedArtistNames);
+
+        // Now, you can make the API call to add or remove the song from favorites based on song.isFavorite.
+        const projectId = "ybxi8hzrv99f";
+
+        const myHeaders = new Headers();
+        myHeaders.append("projectId", projectId);
+        myHeaders.append("Authorization", `Bearer ${token}`);
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            songId: songId,
+        });
+
+        const requestOptions = {
+            method: "PATCH",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow",
+        };
+
+        fetch(
+            "https://academics.newtonschool.co/api/v1/music/favorites/like",
+            requestOptions
+        )
+            .then((response) => response.text())
+            .then((result) => {
+                console.log("Result fav", result);
+            })
+            .catch((error) => console.log("Error", error));
     };
 
     return (
@@ -122,7 +169,13 @@ function AlbumDetails() {
                                     <div className='song-duration'>
                                         <p>Duration: {audioDuration.toFixed(2)} seconds</p>
                                     </div>
+
                                     <audio id="audioElement" src={song.audio_url} onLoadedMetadata={fetchAudioDuration} />
+
+                                    <div className="favorite-button" onClick={() => addToFavorites(song._id)}>
+                                        <div className='iconss' style={{ color: song.isFavorite ? 'red' : 'white' }}><FaHeart /> </div>
+                                    </div>
+
                                 </li>
                             ))}
                         </ul>

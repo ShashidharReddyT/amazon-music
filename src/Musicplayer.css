@@ -12,14 +12,14 @@
   color: white;
   transition: transform 0.3s ease;
   gap: 60px;
+  z-index: 1;
 }
 
 .musicbuttons {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 50px;
-  margin-left: 420px;
+  gap: 65px;
   cursor: pointer;
 }
 
@@ -27,7 +27,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  max-width: 200px;
+  max-width: 250px;
 }
 
 .album-image {
@@ -36,13 +36,18 @@
   object-fit: cover;
   border-radius: 20px;
   margin: 10px;
-  box-shadow: rgb(221 223 20 / 56%) 0px 54px 55px, rgb(27 199 143 / 68%) 0px -12px 30px, rgb(193 83 224 / 76%) 0px 4px 6px, rgb(219 118 22 / 76%) 0px 12px 13px, rgb(7 159 226) 0px -3px 5px;
+  box-shadow: rgb(221 223 20 / 56%) 0px 54px 55px, rgba(34, 35, 35, 0.68) 0px -12px 30px, rgb(193 83 224 / 76%) 0px 4px 6px, rgb(219 118 22 / 76%) 0px 12px 13px, rgb(7 159 226) 0px -3px 5px;
 }
 
 .album-title {
   font-size: 15px;
   font-weight: bold;
   color: #e3d9d9;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+
 }
 
 .player-controls {
@@ -94,6 +99,8 @@
   border-radius: 4px;
   margin-top: 10px;
   margin-bottom: 100px;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .progress {
@@ -117,12 +124,16 @@
   color: #777;
 }
 
-.favorite-button {
-  padding: 35px;
-}
 
 .iconss {
-  font-size: 20px;
+  font-size: 30px;
+}
+
+.volumecontrol {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin: 10px;
 }
 
 @media (max-width: 767px) {

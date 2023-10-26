@@ -15,8 +15,7 @@ const MusicPlayer = ({ audioUrl, albumImage, title, songId, onNext, onPrevious }
     const audioRef = useRef(null);
     const { isUserLoggedIn, token } = useUser();
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-    const [seeking] = useState(false);
-
+    const [seeking, setSeeking] = useState(false); // Added seeking state
 
     useEffect(() => {
         if (audioRef.current) {
@@ -35,7 +34,8 @@ const MusicPlayer = ({ audioUrl, albumImage, title, songId, onNext, onPrevious }
                 onNext();
             });
         }
-    }, [audioRef, onNext]);
+    }, [audioRef, onNext, seeking]);
+
 
     const togglePlay = () => {
         if (!isUserLoggedIn) {
@@ -111,6 +111,11 @@ const MusicPlayer = ({ audioUrl, albumImage, title, songId, onNext, onPrevious }
         setVolume(newVolume);
     };
 
+    const handleSongChange = () => {
+        audioRef.current.pause();
+        setIsPlaying(false);
+    };
+
     return (
         <div>
             {isLoginModalOpen && <LoginModal closeModal={closeLoginModal} />}
@@ -128,7 +133,10 @@ const MusicPlayer = ({ audioUrl, albumImage, title, songId, onNext, onPrevious }
                             src={Backwardbutton}
                             alt="backward"
                             className="backward"
-                            onClick={onPrevious}
+                            onClick={() => {
+                                handleSongChange();
+                                onPrevious();
+                            }}
                         />
                     </div>
                     <div className="player-controls">
@@ -142,11 +150,14 @@ const MusicPlayer = ({ audioUrl, albumImage, title, songId, onNext, onPrevious }
                             src={Forwardbutton}
                             alt="forward"
                             className="forward"
-                            onClick={onNext}
+                            onClick={() => {
+                                handleSongChange();
+                                onNext();
+                            }}
                         />
                     </div>
                 </div>
-                <div className="volume-control">
+                <div className="volumecontrol">
                     <input
                         type="range"
                         min="0"
@@ -155,14 +166,15 @@ const MusicPlayer = ({ audioUrl, albumImage, title, songId, onNext, onPrevious }
                         value={volume}
                         onChange={handleVolumeChange}
                     />
-                </div>
-                <audio ref={audioRef} src={audioUrl}></audio>
-                <div className="time-info">
-                    <span className="current-time">{formatTime(currentTime)}</span>
-                    <span className="duration">{formatTime(duration)}</span>
-                </div>
-                <div className="favorite-button" onClick={addToFavorites}>
-                    <div className='iconss' style={{ color: isFavSong ? 'yellow' : 'red' }}><FaHeart /> </div>
+
+                    <audio ref={audioRef} src={audioUrl}></audio>
+                    <div className="time-info">
+                        <span className="current-time">{formatTime(currentTime)}</span>
+                        <span className="duration">{formatTime(duration)}</span>
+                    </div>
+                    <div className="favorite-button" onClick={addToFavorites}>
+                        <div className='iconss' style={{ color: isFavSong ? 'red' : 'white' }}><FaHeart /> </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,7 +9,10 @@ function Library() {
   const [favSongList, setFavSongList] = useState([]);
   const { isUserLoggedIn, token } = useUser();
   const [selectedSong, setSelectedSong] = useState(null);
-  const [audioDuration, setAudioDuration] = useState(0)
+  const [audioDuration, setAudioDuration] = useState(0);
+  const [artistNames, setArtistNames] = useState([]);
+
+  const [songIndex, setSongIndex] = useState(null);
 
   const fetchAudioDuration = () => {
     const audioElement = document.getElementById("audioElement");
@@ -108,6 +111,7 @@ function Library() {
   };
 
   const openMusicPlayer = (music) => {
+    console.log("Selected Music:", music); // Add this line
     setSelectedSong(music);
   };
 
@@ -118,6 +122,26 @@ function Library() {
     const day = date.getDate().toString().padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
+  const [currentSongIndex, setCurrentSongIndex] = useState(null);
+
+
+
+  const playNextSong = () => {
+    if (currentSongIndex < favSongList.length - 1) {
+      const nextSongIndex = currentSongIndex + 1;
+      setSelectedSong(favSongList[nextSongIndex]);
+      setCurrentSongIndex(nextSongIndex);
+    }
+  };
+
+  const playPreviousSong = () => {
+    if (currentSongIndex > 0) {
+      const previousSongIndex = currentSongIndex - 1;
+      setSelectedSong(favSongList[previousSongIndex]);
+      setCurrentSongIndex(previousSongIndex);
+    }
+  };
+
 
   return (
     <MusicProvider>
@@ -131,9 +155,12 @@ function Library() {
           <div>
             <h2 className="library-subheader">Your Favorite Songs:</h2>
             <ul className="song-list">
-              {favSongList.map((music) => (
+              {favSongList.map((music, index) => (
+
                 <li key={music._id} className="song-list-item">
-                  <div className="music-card-content" onClick={() => openMusicPlayer(music)}>
+                  <div className="music-card-content" onClick={() => openMusicPlayer(music, index)}>
+                    <span className="song-number">{index + 1}.</span>
+
                     <MusicCard
                       title={music.title}
                       image={music.thumbnail}
@@ -175,6 +202,8 @@ function Library() {
               albumImage={selectedSong.thumbnail}
               title={selectedSong.title}
               songId={selectedSong._id}
+              onPrevious={playPreviousSong}
+              onNext={playNextSong}
             />
             <button className="clear-selection" onClick={() => setSelectedSong(null)}>
               Clear Selection

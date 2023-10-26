@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import FeaturedSongs from './FeaturedSongs';
 import FeaturedAlbums from './FeaturedAlbums';
@@ -7,60 +7,85 @@ import TrendingSongs from './TrendingSongs';
 import NewReleaseSongs from './NewReleaseSongs';
 import Musicplayer from './Musicplayer';
 import Loading from './Loading';
+import { useMusic } from './MusicProvider';
 
-function HomePage() {
+function HomePage(setCurrentlyPlayingSong) {
+  const { selectedMusic, setMusic, playNext, playPrevious, artistNames } = useMusic();
   const [isLoading, setIsLoading] = useState(true);
-  const [currentSong, setCurrentSong] = useState(null);
-  const [isMusicPlayerVisible, setMusicPlayerVisible] = useState(false);
+  const [currentSongIndex, setCurrentSongIndex] = useState(null);
+  const { currentSong, setCurrentSong } = useMusic();
+  const [songResults, setSongResults] = useState([]);
+  const [selectedSong, setSelectedSong] = useState(null);
 
-  // Function to toggle the music player visibility
-  const toggleMusicPlayer = () => {
-    setMusicPlayerVisible(!isMusicPlayerVisible);
+  const [audioDuration, setAudioDuration] = useState(0);
+  const [songIndex, setSongIndex] = useState(null);
+
+  // Function to play the next song
+  const playNextSong = () => {
+    if (currentSongIndex < artistNames.length - 1) {
+      const nextSongIndex = currentSongIndex + 1;
+      setCurrentSongIndex(nextSongIndex);
+      setCurrentSong(artistNames[nextSongIndex]);
+    }
+  };
+
+  // Function to play the previous song
+  const playPreviousSong = () => {
+    if (currentSongIndex > 0) {
+      const previousSongIndex = currentSongIndex - 1;
+      setCurrentSongIndex(previousSongIndex);
+      setCurrentSong(artistNames[previousSongIndex]);
+    }
+  };
+
+  const playSong = (itemData, index) => {
+    setCurrentlyPlayingSong(itemData._id);
+    if (selectedSong === itemData) {
+      setSelectedSong(null);
+      // Clear selected music
+    } else {
+      setSelectedSong(itemData);
+      setSongIndex(index);
+
+    }
   };
 
   useEffect(() => {
-    // Simulate loading delay (You can replace this with actual data fetching)
     setTimeout(() => {
       setIsLoading(false);
-    }, 500); // 2 seconds for demonstration purposes; replace with your actual data fetching logic
+    }, 500);
   }, []);
 
   return (
     <>
-      {/* Displaying loading indicator while waiting for data */}
       {isLoading ? (
         <Loading />
       ) : (
-        <>
-          {/* Displaying featured songs */}
-          <FeaturedSongs mood="romantic" playSong={setCurrentSong} toggleMusicPlayer={toggleMusicPlayer} />
+        <div>
+          <FeaturedSongs mood="romantic" />
 
-          {/* Displaying featured albums */}
-          <FeaturedAlbums playSong={setCurrentSong} toggleMusicPlayer={toggleMusicPlayer} />
+          <FeaturedAlbums />
 
-          <TrendingSongs playSong={setCurrentSong} toggleMusicPlayer={toggleMusicPlayer} />
+          <TrendingSongs />
 
-          <NewReleaseSongs playSong={setCurrentSong} toggleMusicPlayer={toggleMusicPlayer} />
+          <NewReleaseSongs />
 
-          {/* Displaying featured artists */}
-          <FeaturedArtists playSong={setCurrentSong} toggleMusicPlayer={toggleMusicPlayer} />
+          <FeaturedArtists />
+
+          {currentSong && (
+            <Musicplayer
+              audioUrl={currentSong.audioUrl}
+              albumImage={currentSong.albumImage}
+              title={currentSong.title}
+              songId={currentSong.songId}
+              onPrevious={playPreviousSong}
+              onNext={playNextSong}
+            />
+          )}
 
 
-        </>
+        </div>
       )}
-
-      {/* Music Player Container */}
-      <div className={`music-player ${isMusicPlayerVisible ? 'visible' : ''}`}>
-        {currentSong && (
-          <Musicplayer
-            audioUrl={currentSong.audio_url}
-            albumImage={currentSong.thumbnail}
-            title={currentSong.title}
-            songId={currentSong._id}
-            onClose={() => setCurrentSong(null)}
-          />
-        )}
-      </div>
     </>
   );
 }

@@ -21,14 +21,17 @@
 
 .search-results {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 0fr));
+    grid-template-columns: repeat(auto-fit, minmax(225px, 0fr));
     grid-gap: 10px;
-    justify-content: center;
     margin-top: 50px;
     list-style: none;
     margin-bottom: 120px;
     text-align: center;
 }
+
+/* .searchicon {
+    background-color: red;
+} */
 
 .romantic {
     border: 1px solid white;
@@ -38,23 +41,70 @@
     background-image: linear-gradient(90deg, rgb(21, 220, 231), rgb(231, 61, 24));
 }
 
-.search-bar1,
-button {
-    border: 2px solid #0deae1;
-    padding: 10px;
+.search-bar1 {
+    border: 2px solid #37d0d0;
+    padding-top: 29px;
+    padding-bottom: 29px;
     border-radius: 10px;
+    padding-left: 300px;
     text-align: center;
-    width: 20%;
+    background-color: black;
+}
+
+.search-bar1 input[type="text"] {
+    padding-left: 50px;
+
 }
 
 .search-barr {
-
-    text-align: center;
-    margin: 20px 0;
+    position: fixed;
+    top: 20px;
     display: flex;
-    justify-content: center;
-    gap: 15px;
+    flex-direction: row-reverse;
+    transition: all 0.3s;
+    margin-left: 750px;
+    position: fixed;
+    right: 100px;
+
 }
+
+
+.search-barr.expanded {
+    flex-direction: row;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.search-inputt {
+    width: 225px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    transition: all 0.3s;
+
+}
+
+.search-inputt:focus {
+    position: fixed;
+    top: 0px;
+    background-color: #0e0e0e;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+    padding-right: 420px;
+    border-radius: unset;
+}
+
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: -30px;
+}
+
 
 .button3,
 .button4,
@@ -89,9 +139,17 @@ button {
 }
 
 .moodsheading {
-    text-align: center;
+    text-align: start;
     padding: 10px;
+    font-weight: 800;
 }
+
+.profileimg {
+    margin-top: 100px;
+    width: 300px;
+    height: 300px;
+}
+
 
 /* Media query for mobile screens */
 @media (max-width: 767px) {

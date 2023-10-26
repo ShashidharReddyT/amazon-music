@@ -33,6 +33,20 @@
 
 }
 
+.welcome1 {
+    text-align: center;
+    margin: 10px;
+    margin-top: 80px;
+    font-size: 35px;
+    font-weight: 900;
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
 
 #signInBorder {
     position: static;
@@ -62,7 +76,7 @@
 input:focus {
     -webkit-box-shadow: 0px 0px 1.5px 1.5px rgba(231, 118, 0, 0.9);
     -moz-box-shadow: 0px 0px 1.5px 1.5px rgba(231, 118, 0, 0.9);
-    box-shadow: 0px 0px 1.5px 1.5px rgba(231, 118, 0, 0.9);
+    box-shadow: 0px 0px 1.5px 1.5px rgba(12, 197, 234, 0.9);
     outline: 0;
 }
 
@@ -132,4 +146,9 @@ input:focus {
 
 #special {
     font-size: 11px;
+}
+
+.userloginn {
+    text-align: center;
+    margin: 40vh;
 }

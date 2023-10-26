@@ -17,10 +17,9 @@ function FeaturedAlbums() {
     const [currentAlbum, setCurrentAlbum] = useState(null);
     const navigate = useNavigate();
     const scrollContainerRef = useRef(null);
-    const [visibleSongs, setVisibleSongs] = useState(12);
-    const [showAllClicked, setShowAllClicked] = useState(false);
-
-    const totalSongs = 100;
+    const [visibleSongs, setVisibleSongs] = useState(100);
+    const itemsPerPage = 10; // Number of items to display per page
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         const fetchDataWithDelay = async () => {
@@ -48,73 +47,46 @@ function FeaturedAlbums() {
 
         fetchDataWithDelay();
     }, []);
+
     const navigateToAlbumDetails = (album) => {
         navigate(`/album/${album._id}`, {
             state: { itemData: album },
         });
     };
 
-    const openModal = (event, album) => {
-        const cardPosition = event.target.getBoundingClientRect();
-        const top = cardPosition.top + window.scrollY;
-        const left = cardPosition.left + window.scrollX;
-        setClickedCardPosition({ top, left });
-        setModalIsOpen(true);
-        setCurrentAlbum(album);
-    };
-
-    const showAll = () => {
-        setVisibleSongs(totalSongs);
-        setShowAllClicked(true);
-    };
-
-    const showLess = () => {
-        setVisibleSongs(12);
-        setShowAllClicked(false);
-    };
-
-    const handleScroll = (scrollDirection) => {
-        const scrollContainer = scrollContainerRef.current;
-
-        if (scrollContainer) {
-            const currentScrollLeft = scrollContainer.scrollLeft;
-            const scrollDistance = scrollDirection === 'left' ? -600 : 600;
-            const targetScrollLeft = currentScrollLeft + scrollDistance;
-            scrollContainer.scrollTo({
-                left: targetScrollLeft,
-                behavior: "smooth",
-            });
+    const handleNextPage = () => {
+        if (currentPage < Math.ceil(featuredAlbums.length / itemsPerPage)) {
+            setCurrentPage(currentPage + 1);
         }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const getPaginatedAlbums = () => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return featuredAlbums.slice(startIndex, endIndex);
     };
 
     return (
         <div className="featured-album-container">
             <div className='merging'>
                 <h2 className='titles'>Albums</h2>
-                <div className="button-container">
-                    <button className="show-less-button" onClick={() => handleScroll('left')}>
-                        <img src={Lessthan} alt='less' />
-                    </button>
-                    <button className="load-more-button" onClick={() => handleScroll('right')}>
-                        <img src={Greaterthan} alt='great' />
-                    </button>
-                    <Link to='/seeallsongs3' className='show-all-button' >SEE ALL</Link>
-
-
-                </div>
             </div>
             {loading ? (
                 <Loading />
             ) : (
-                <div ref={scrollContainerRef} className="featured-list">
-                    {featuredAlbums.slice(0, visibleSongs).map((album, index) => (
+                <div ref={scrollContainerRef} className="featured-list-all1">
+                    {getPaginatedAlbums().map((album, index) => (
                         <li key={index} className="artist-card">
                             <div className="buttons">
-                                {/* <button className="heart-button">❤️</button> */}
                                 <button className="playbutton" onClick={() => navigateToAlbumDetails(album)}>
                                     <img src={ForwardButtonLogo} alt="Forward" className="playbutton-image" />
                                 </button>
-                                {/* <button className="dots-button" onClick={(event) => openModal(event, album)}>⋯</button> */}
                             </div>
                             {album.image && (
                                 <img src={album.image} alt={album.name} className="artist-image" />
@@ -129,6 +101,12 @@ function FeaturedAlbums() {
                     ))}
                 </div>
             )}
+
+            <div className="pagination">
+                <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+                <span>{currentPage}</span>
+                <button onClick={handleNextPage} disabled={currentPage >= Math.ceil(featuredAlbums.length / itemsPerPage)}>Next</button>
+            </div>
 
             {currentAlbum && (
                 <Modal

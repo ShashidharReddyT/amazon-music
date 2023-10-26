@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from './Assets/Amazon-music.png';
 import './SignupPage.css';
+import { useNavigate } from 'react-router-dom';
 
 function SignupPage() {
     const [email, setEmail] = useState('');
@@ -8,7 +9,7 @@ function SignupPage() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
-
+    const navigate = useNavigate();
     const handleSignup = async (event) => {
         event.preventDefault();
         try {
@@ -40,8 +41,10 @@ function SignupPage() {
                 setLastName('');
                 setEmail('');
                 setPassword('');
+                // Redirect to the homepage
+                navigate('/login'); // Replace '/' with the actual URL of your homepage
             } else {
-                setResponseMessage(`Registration failed. Status ${response.status}: ${responseBody}`);
+                setResponseMessage(`Registration failed.`);
             }
         } catch (error) {
             console.error('Registration error:', error);

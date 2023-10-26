@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+import { useUser } from "./UserProvider";
 import Amazonmusic from '../src/Assets/Amazon-music.png';
 import HomeLogo from '../src/Assets/HomeLogo.svg';
 import Podcasts from '../src/Assets/Podcasts.svg';
@@ -10,13 +11,15 @@ import Searchlogo from '../src/Assets/Searchlogo.svg';
 import Librarydropdownlogo from '../src/Assets/Librarydropdownlogo.svg';
 
 const Navbar = React.memo(() => {
+  const { isUserLoggedIn, token } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
   const [search] = useState('');
-  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const navigate = useNavigate();
   const menuContainerRef = useRef(null);
   const location = useLocation();
   const [searchInput, setSearchInput] = useState('');
+
+
 
   useEffect(() => {
     const closeMenuOnOutsideClick = (e) => {
@@ -60,6 +63,7 @@ const Navbar = React.memo(() => {
   };
 
   return (
+
     <header>
       <nav className="navbar">
         <div className="logo">
@@ -90,26 +94,29 @@ const Navbar = React.memo(() => {
           </div>
 
           <div className="nav-links">
-            <Link
-              to="/library"
-              className={`hover-home-button ${location.pathname === '/library' ? 'active' : ''}`}
-            >
-              <img src={Library} alt="library" />
-              LIBRARY{'\u00A0'}
-              <img src={Librarydropdownlogo} alt="librarydropdown" className="dropdowns" />
-            </Link>
-            <ul className="dropdown-content">
-              <li>
-                <p>Music</p>
-              </li>
-              <li>
-                <p>Podcasts</p>
-              </li>
-            </ul>
+            <div className="dropdown">
+              <Link
+                to="/library"
+                className={`hover-home-button ${location.pathname === '/library' ? 'active' : ''}`}
+              >
+                <img src={Library} alt="library" />
+                LIBRARY{'\u00A0'}
+                <img src={Librarydropdownlogo} alt="librarydropdown" className="dropdowns" />
+              </Link>
+              <ul className="dropdown-content">
+                <li>
+                  <p>Music</p>
+                </li>
+                <li>
+                  <p>Podcasts</p>
+                </li>
+              </ul>
+            </div>
           </div>
+
         </ul>
 
-        <div className={`search-bar ${isSearchExpanded ? 'expanded' : ''}`}>
+        <div className={`search-bar`}>
           <Link to="/search">
             <input
               type="text"
@@ -121,28 +128,44 @@ const Navbar = React.memo(() => {
               }}
               onClick={handleSearchBarClick}
             />
-
           </Link>
           <button type="button" className="search-button" onClick={handleSearch}>
             <img src={Searchlogo} alt="searchlogo" className="searchicon" />
           </button>
         </div>
 
-        <div className="menu-container" ref={menuContainerRef}>
-          <button className="user-icon" onClick={toggleUserMenu}>
-            <img src={userlogo} alt="UserIcon" />
-          </button>
-          {menuOpen && (
-            <div className="menu">
-              <Link to="signup">Signup</Link>
-              <Link to="login">Login</Link>
-              <Link to="subscribe">Subscriptions</Link>
-            </div>
-          )}
-        </div>
+        {!isUserLoggedIn ? (
+          <div className="menu-container" ref={menuContainerRef}>
+            <button className="user-icon" onClick={toggleUserMenu}>
+              <img src={userlogo} alt="UserIcon" />
+            </button>
+
+            {menuOpen && (
+              <div className="menu">
+                <Link to="signup">Signup</Link>
+                <Link to="login">Login</Link>
+                <Link to="subscribe">Subscriptions</Link>
+                {/* <Link to="userprofile">User Profile</Link> */}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="menu-container" ref={menuContainerRef}>
+            <button className="user-icon" onClick={toggleUserMenu}>
+              <img src={userlogo} alt="UserIcon" />
+            </button>
+            {menuOpen && (
+              <div className="menu">
+                <Link to="subscribe">Subscriptions</Link>
+                <Link to="userprofile">Profile</Link>
+                <Link to="signout">Sign Out</Link>
+              </div>
+            )}
+          </div>
+        )}
       </nav>
     </header>
-  );
+  )
 });
 
 export default Navbar;

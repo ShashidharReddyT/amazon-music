@@ -9,6 +9,8 @@ const MaybeShowNavBar = ({ children }) => {
         // console.log("this is location: ", location);
         if (location.pathname === '/signup') {
             setShowNavBar(false);
+        } else if (location.pathname === '/search') {
+            setShowNavBar(false);
         } else {
             setShowNavBar(true);
         }

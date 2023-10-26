@@ -10,6 +10,18 @@
   width: 180px;
   margin: 10px;
   border-radius: 10px;
+  margin-top: -35px;
+  transition: transform 0.5s ease;
+}
+
+.slide-in {
+  transform: translateX(0);
+}
+
+/* Add this class to slide out cards */
+.slide-out {
+  transform: translateX(-100%);
+  /* Slide out to the left */
 }
 
 
@@ -56,6 +68,12 @@
   transition: background-color 0.3s;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
 
 .artist-card .buttons {
   position: relative;
@@ -63,20 +81,30 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-evenly;
   width: 100%;
   opacity: 0;
-  transition: opacity 0.3s;
+}
+
+.playbutton-image {
+  height: 40px;
+  width: 40px;
+  margin-top: 15px;
 }
 
 .artist-card .buttons button {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.15);
   color: white;
-  border-radius: 50%;
-  font-size: 30px;
+  border-radius: 60%;
+  font-size: 50px;
   cursor: pointer;
+  backdrop-filter: blur(10px);
+  width: 90px;
+  height: 90px;
   border: none;
 }
+
 
 .artist-card:hover .buttons {
   opacity: 1;
@@ -107,12 +135,21 @@
   margin: 12px;
 }
 
+.card-container {
+  display: flex;
+  transition: transform 1.5s;
+
+
+}
+
 .show-all-button {
   background-color: rgba(255, 255, 255, 0.15);
-  width: 85px;
-  height: 38px;
+  text-align: center;
   border-radius: 22px;
-  font-weight: 700;
+  text-decoration: none;
+  border: 0.1px solid lightgray;
+  backdrop-filter: blur(30px);
+
 }
 
 
@@ -123,7 +160,10 @@
   display: grid;
   overflow-x: auto;
   grid-auto-flow: column;
-  margin-top: -45px;
+
+  margin-top: -35px;
+  transition: transform 0.5s ease;
+
 }
 
 
@@ -134,9 +174,27 @@
   display: grid;
   overflow-x: auto;
   grid-auto-flow: column;
-  margin-top: -30px;
   margin-bottom: 100px;
+  margin-top: -35px;
 
+}
+
+.featured-list-all {
+  list-style: none;
+  grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-bottom: 0px;
+  margin-top: -20px;
+  margin-left: -40px;
+}
+
+.featured-list-all1 {
+  list-style: none;
+  grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-bottom: 0px;
 }
 
 .featured-list::-webkit-scrollbar {
