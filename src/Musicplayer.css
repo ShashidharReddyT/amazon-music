@@ -186,6 +186,23 @@
     justify-content: space-between;
   }
 
+  .play-pause-button {
+    width: 60px;
+    height: 60px;
+    background-color: #182330;
+    color: #fff;
+    border: none;
+    border-radius: 18%;
+    cursor: pointer;
+    font-size: 40px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    box-shadow: rgb(29 29 184) 0px 50px 100px -20px, rgb(220 35 35) 0px 30px 60px -30px, rgb(190 221 251) 0px -2px 6px 0px inset;
+  }
+
   .album-title {
     font-size: 17px;
     font-weight: bold;

@@ -248,4 +248,8 @@
     .nosongs {
         margin-left: 50px;
     }
+
+    .albumdetailsmain {
+        width: 103%;
+    }
 }
