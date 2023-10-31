@@ -130,7 +130,9 @@ const Navbar = React.memo(() => {
             />
           </Link>
           <button type="button" className="search-button" onClick={handleSearch}>
-            <img src={Searchlogo} alt="searchlogo" className="searchicon" />
+            <Link to="/search">
+              <img src={Searchlogo} alt="searchlogo" className="searchicon" />
+            </Link>
           </button>
         </div>
 

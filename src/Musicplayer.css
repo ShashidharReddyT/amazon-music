@@ -156,3 +156,63 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 420px) {
+
+  .backward,
+  .volumecontrol {
+    display: none;
+  }
+
+  .musicbuttons {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    margin-left: 0px;
+  }
+
+  .album-info {
+    display: flex;
+    align-items: center;
+    margin-left: 0px;
+  }
+
+  .music-player {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    justify-content: space-between;
+  }
+
+  .album-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #e3d9d9;
+    width: 100px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: balance;
+  }
+
+  .signbuttonss {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .close-buttton {
+    position: static;
+    cursor: pointer;
+    width: 40px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    height: 40px;
+    border: 2px solid transparent;
+    background-color: rgba(255, 255, 255, 0.15);
+    font-size: 20px;
+    color: white;
+    border-radius: 30px;
+  }
+}

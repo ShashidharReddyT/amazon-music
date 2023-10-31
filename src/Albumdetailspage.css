@@ -39,6 +39,7 @@
     padding: 0;
     margin-bottom: 150px;
     margin-right: 10px;
+    margin-left: 5px;
 }
 
 .song-list-item {
@@ -71,6 +72,7 @@
 .podcastss {
     padding: 20px;
     text-align: start;
+    font-size: 20px;
 }
 
 .banner {
@@ -157,4 +159,92 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.albumimages {
+    margin-left: 20px;
+}
+
+@media (max-width: 420px) {
+    .song-thumbnail {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+
+    .song-details {
+        display: block;
+        margin-left: 10px;
+        width: 200px;
+    }
+
+    .song-info {
+        width: 100%;
+    }
+
+    .imagefetch,
+    .thumbnaill {
+        width: 50%;
+        height: auto;
+        margin-top: 10px;
+    }
+
+    .song-list-item {
+        margin-bottom: 20px;
+    }
+
+    .song-list {
+        margin-left: 50px;
+    }
+
+    .song-list-item.selected {
+        border-color: #70aaa8;
+    }
+
+    .song-number {
+        width: 20px;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .banner {
+        width: 100%;
+        height: auto;
+    }
+
+    .bann {
+        display: block;
+        gap: 10px;
+    }
+
+    .playall {
+        padding: 10px;
+        height: 35px;
+        width: 70px;
+    }
+
+    .sonnng {
+        display: none;
+    }
+
+    .song-duration {
+        display: none;
+    }
+
+    .albumimages {
+        margin-left: 60px;
+        margin-top: 80px;
+    }
+
+    .artiststitle {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 250px;
+    }
+
+    .nosongs {
+        margin-left: 50px;
+    }
 }

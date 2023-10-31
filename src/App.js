@@ -48,7 +48,6 @@ function App() {
           }
           />
 
-
           <Route path="/podcasts" element={<Podcasts />} />
 
           <Route path="/signup" element={<SignupPage />} />

@@ -34,7 +34,7 @@ function FeaturedSongs({ mood }) {
     useEffect(() => {
         const fetchDataWithDelay = async () => {
             try {
-                await new Promise((resolve) => setTimeout(resolve, 300));
+                await new Promise((resolve) => setTimeout(resolve, 100));
                 const apiUrl = `https://academics.newtonschool.co/api/v1/music/song?filter={"mood":"${mood}"}`;
                 const response = await fetch(apiUrl, {
                     headers: {

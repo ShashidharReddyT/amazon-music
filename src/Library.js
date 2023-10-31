@@ -108,6 +108,7 @@ function Library() {
     isolation: "isolate",
     left: "-50px",
     top: "-20px",
+    width: "100%",
   };
 
   const openMusicPlayer = (music) => {
@@ -168,7 +169,7 @@ function Library() {
                       id={music._id}
                       isFavSong={favSongList.some((song) => song._id === music._id)}
                     />
-                    <p>Date of Release: {formatDate(music.dateOfRelease)}</p>
+                    {/* <p>Date of Release: {formatDate(music.dateOfRelease)}</p> */}
                     <div className="song-duration">
                       <p>Duration: {audioDuration.toFixed(2)} seconds</p>
                     </div>

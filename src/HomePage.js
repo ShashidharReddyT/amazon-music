@@ -53,7 +53,7 @@ function HomePage(setCurrentlyPlayingSong) {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 0);
   }, []);
 
   return (

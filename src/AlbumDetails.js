@@ -89,7 +89,8 @@ function AlbumDetails() {
         isolation: 'isolate',
 
         top: '-20px',
-        width: '100%'
+        width: '100%',
+        marginLeft: '-50px',
     };
     const addToFavorites = (songId) => {
         // Find the song in artistNames array by songId
@@ -146,7 +147,7 @@ function AlbumDetails() {
                 </div>
                 {artistNames.length > 0 ? (
                     <>
-                        <h3>Songs:</h3>
+                        {/* <h3>Songs:</h3> */}
                         <ul className="song-list">
                             {artistNames.map((song, index) => (
                                 <li
@@ -166,9 +167,9 @@ function AlbumDetails() {
                                     <div className='song-detailss'>
                                         <p className='sonnng'>{song.title}</p>
                                     </div>
-                                    <div className='song-duration'>
+                                    {/* <div className='song-duration'>
                                         <p>Duration: {audioDuration.toFixed(2)} seconds</p>
-                                    </div>
+                                    </div> */}
 
                                     <audio id="audioElement" src={song.audio_url} onLoadedMetadata={fetchAudioDuration} />
 
@@ -191,7 +192,7 @@ function AlbumDetails() {
                         )}
                     </>
                 ) : (
-                    <p>No songs available</p>
+                    <p className='nosongs'>No songs available</p>
                 )}
             </div>
         </div>

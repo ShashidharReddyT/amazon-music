@@ -25,7 +25,7 @@ function FeaturedAlbums() {
     useEffect(() => {
         const fetchDataWithDelay = async () => {
             try {
-                await new Promise((resolve) => setTimeout(resolve, 100));
+                await new Promise((resolve) => setTimeout(resolve, 200));
                 const response = await fetch('https://academics.newtonschool.co/api/v1/music/album?limit=100', {
                     headers: {
                         'projectId': 'ybxi8hzrv99f',

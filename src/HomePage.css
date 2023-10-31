@@ -160,12 +160,9 @@
   display: grid;
   overflow-x: auto;
   grid-auto-flow: column;
-
   margin-top: -35px;
   transition: transform 0.5s ease;
-
 }
-
 
 .featured-list1 {
   list-style: none;
@@ -315,7 +312,7 @@
 }
 
 /* Styles for mobile devices (414px and below) */
-@media only screen and (max-width: 414px) {
+@media only screen and (max-width: 420px) {
   .homepagee {
     margin: 50px 0 0 0;
     padding-left: 10px;
@@ -342,6 +339,12 @@
     gap: 90px;
   }
 
+  .featured-list1 {
+    display: flex;
+    flex-direction: row;
+    gap: 90px;
+  }
+
   .featured-item-name,
   .titlesss,
   .titless,
@@ -356,5 +359,75 @@
   .image-icon {
     opacity: 0.4;
   }
+
+  .show-all-button {
+    width: 65px;
+    height: 30px;
+    line-height: 30px;
+  }
+
+  .featured-list-all {
+    list-style: none;
+    grid-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 2fr));
+    /* margin-bottom: -62px; */
+    margin-top: -65px;
+    margin-left: -40px;
+  }
+
+  .featured-list-all1 {
+    list-style: none;
+    grid-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 2fr));
+    margin-top: -65px;
+  }
+
+  .artist-card {
+    margin-top: -85px;
+
+  }
+
+  .titles {
+    padding: 0px;
+    padding-left: 10px;
+    padding-bottom: 65px;
+  }
+
+  .button-container {
+    display: flex;
+    /* margin-right: 25px; */
+    align-items: center;
+    margin-top: -60px;
+  }
+
+  .merging {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 93%; */
+    margin-bottom: 6px;
+  }
+
+  .artist-image {
+    max-width: 160px;
+    height: 160px;
+    border-radius: 10px;
+  }
+
+  .artist-card .buttons {
+    position: relative;
+    top: 40%;
+    left: 80%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 150%;
+    opacity: 0;
+    gap: 15px;
+  }
+
 
 }

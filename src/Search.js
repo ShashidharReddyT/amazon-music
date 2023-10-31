@@ -96,8 +96,11 @@ const Search = () => {
     };
 
 
-    const handleSearch = () => {
+    const handleSearch = (e) => {
+        e.preventDefault(); // Prevent the form from submitting and reloading the page
+        console.log('Search Clicked'); // Add this line for debugging
         setIsLoading(true);
+
 
         fetch(`https://academics.newtonschool.co/api/v1/music/song?filter={"title":"${searchInput}"}`, {
             headers: {
@@ -161,30 +164,32 @@ const Search = () => {
     return (
         <div>
             <SearchNavbar />
-            <div className={`search-barr ${isSearchExpanded ? 'expanded' : ''}`}>
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    className="search-inputt"
-                    value={searchInput}
-                    onChange={(e) => {
-                        setSearchInput(e.target.value);
-                    }}
-                    onClick={handleSearchBarClick}
-                />
+            <form onSubmit={handleSearch}>
+                <div className={`search-barr ${isSearchExpanded ? 'expanded' : ''}`}>
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        className="search-inputt"
+                        value={searchInput}
+                        onChange={(e) => {
+                            setSearchInput(e.target.value);
+                        }}
+                    // Remove the onClick event
+                    />
 
-                <div className="search-button-container">
-                    <button type="button" className="search-button" onClick={handleSearch}>
-                        <img src={Searchlogo} alt="searchlogo" className="searchicon" />
-                    </button>
-
-                    {isSearchExpanded && (
-                        <div className="expanded-search-icon">
+                    <div className="search-button-container">
+                        <button type="submit" className="search-button">
                             <img src={Searchlogo} alt="searchlogo" className="searchicon" />
-                        </div>
-                    )}
+                        </button>
+
+                        {isSearchExpanded && (
+                            <div className="expanded-search-icon">
+                                <img src={Searchlogo} alt="searchlogo" className="searchicon" />
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
+            </form>
 
 
 

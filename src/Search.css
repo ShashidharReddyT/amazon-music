@@ -150,6 +150,19 @@
     height: 300px;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
 
 /* Media query for mobile screens */
 @media (max-width: 767px) {
@@ -182,5 +195,68 @@
     .button6,
     .button7 {
         padding: 15px;
+    }
+}
+
+@media (max-width: 420px) {
+    .profileimg {
+        margin-top: 100px;
+        margin-left: 140px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .search-inputt {
+        width: 55px;
+        height: 8px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        background-color: white;
+        transition: all 0.3s;
+        position: fixed;
+        right: 60px;
+        font-size: 12px;
+        top: 15px;
+    }
+
+    .search-inputt:focus {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        background-color: #0e0e0e;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        color: white;
+        padding-right: 305px;
+        /* padding-left: 10px; */
+        border-radius: unset;
+        width: -126px;
+        width: 96px;
+    }
+
+    .search-barr {
+        position: fixed;
+        top: 20px;
+        display: flex;
+        flex-direction: row-reverse;
+        transition: all 0.3s;
+        margin-left: 750px;
+        position: fixed;
+        right: 1px;
+    }
+
+    .search-results {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 0fr));
+        grid-gap: 40px;
+        margin-top: 30px;
+        margin-bottom: 80px;
+    }
+
+    .moodsheading {
+        text-align: start;
+        padding: 10px;
+        font-weight: 800;
+        margin-top: 70px;
     }
 }
