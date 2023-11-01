@@ -196,7 +196,7 @@
     }
 
     .song-list {
-        margin-left: 50px;
+        margin-left: 0px;
     }
 
     .song-list-item.selected {
@@ -234,8 +234,11 @@
     }
 
     .albumimages {
-        margin-left: 60px;
-        margin-top: 80px;
+        margin-left: -5px;
+    }
+
+    .titkes {
+        margin-left: 28px;
     }
 
     .artiststitle {

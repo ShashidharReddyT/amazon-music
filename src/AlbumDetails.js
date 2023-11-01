@@ -87,10 +87,9 @@ function AlbumDetails() {
         color: 'white',
         position: 'relative',
         isolation: 'isolate',
-
         top: '-20px',
         width: '100%',
-        marginLeft: '-50px',
+
     };
     const addToFavorites = (songId) => {
         // Find the song in artistNames array by songId

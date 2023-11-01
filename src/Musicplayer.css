@@ -159,16 +159,15 @@
 
 @media (max-width: 420px) {
 
-  .backward,
+
   .volumecontrol {
     display: none;
   }
 
   .musicbuttons {
     display: flex;
-    gap: 15px;
-    padding: 10px;
-    margin-right: 20px;
+    gap: 8px;
+    margin-right: 30px;
     margin-left: 0px;
   }
 
@@ -184,6 +183,7 @@
     flex-direction: row;
     padding: 0px;
     justify-content: space-between;
+    gap: 50px;
   }
 
   .play-pause-button {

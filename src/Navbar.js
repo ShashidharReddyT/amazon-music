@@ -103,12 +103,13 @@ const Navbar = React.memo(() => {
                 LIBRARY{'\u00A0'}
                 <img src={Librarydropdownlogo} alt="librarydropdown" className="dropdowns" />
               </Link>
+
               <ul className="dropdown-content">
                 <li>
-                  <p>Music</p>
+                  <Link to="/music"> Music</Link>
                 </li>
                 <li>
-                  <p>Podcasts</p>
+                  <Link to="/podcasts"> Podcasts</Link>
                 </li>
               </ul>
             </div>

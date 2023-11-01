@@ -7,6 +7,7 @@ import AlbumDetails from './AlbumDetails';
 import SongsDetail from './SongsDetail';
 import ArtistsDetails from './ArtistsDetails';
 import Podcasts from './Podcasts';
+import Dropdownmusic from './Dropdownmusic';
 import { Route, Routes, Navigate } from "react-router-dom";
 import SignupPage from './SignupPage';
 import Login from './Login';
@@ -47,6 +48,9 @@ function App() {
             </MusicProvider>
           }
           />
+
+          <Route path="/podcasts" element={<Podcasts />} />
+          <Route path="/music" element={<Dropdownmusic />} />
 
           <Route path="/podcasts" element={<Podcasts />} />
 

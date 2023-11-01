@@ -14,6 +14,7 @@
   border-bottom: 0.1px solid rgb(74, 73, 73);
 }
 
+
 .logo {
   display: flex;
   align-items: center;
@@ -49,6 +50,8 @@
   padding-left: 50px;
   gap: 15px;
 }
+
+
 
 .nav-linksdiv {
   list-style: none;
@@ -88,8 +91,12 @@
 .nav-links li:hover {
   background-color: rgb(89, 88, 88);
   opacity: 0.5;
-  padding: 5px;
+  /* padding: 5px; */
+  /* margin-top: 22px; */
+  /* margin: 0px; */
   padding-left: 10px;
+  width: 300px;
+  height: 50px;
 }
 
 .hover-home-button:hover {
@@ -244,21 +251,22 @@
 /* Style the dropdown menu links */
 .dropdown-content a {
   text-decoration: none;
-  color: #f01313;
-  display: block;
+  color: #13c4f0;
 }
 
 .dropdown-content li {
   cursor: pointer;
   padding-left: 10px;
+  width: 300px;
+  line-height: 50px;
 }
 
 /* Hover effect for dropdown menu items */
-.dropdown-content a:hover {
+/* .dropdown-content a:hover {
   background-color: #12b5b8;
   position: relative;
 
-}
+} */
 
 /* Show the dropdown menu when hovering over the parent */
 .dropdown:hover .dropdown-content {
@@ -301,17 +309,8 @@
     height: 40px;
   }
 
-  .nav-linksdiv .nav-links a {
-    font-size: 0;
-  }
-
-  .homepage {
-    font-size: 17px;
-
-  }
-
   .nav-links {
-    padding-left: 20px;
+    padding-left: 10px;
   }
 
   .search-bar {
@@ -351,19 +350,7 @@
   }
 }
 
-@media (max-width: 1130px) {
-  .nav-linksdiv .nav-links a {
-    font-size: 0;
-  }
 
-  .homepage {
-    font-size: 17px;
-  }
-
-  .nav-links {
-    padding-left: 10px;
-  }
-}
 
 @media (max-width: 1800px) {
   .menu {
@@ -388,12 +375,37 @@
     top: 15px;
   }
 
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0px;
+    font-weight: 500;
+    color: #fff;
+    transition: color 0.3s, cursor 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
   .nav-linksdiv {
     display: flex;
     flex-direction: row;
     gap: 0px;
     margin-left: -20px;
   }
+
+  .nav-links li:hover {
+    background-color: rgb(89, 88, 88);
+    opacity: 0.5;
+    /* padding: 5px; */
+    /* margin-top: 22px; */
+    /* margin: 0px; */
+    padding-left: 10px;
+    width: 200px;
+    height: 50px;
+    color: cyan;
+  }
+
+
 
   .dropdowns {
     display: none;
@@ -429,10 +441,16 @@
     font-size: 18px;
     padding-left: 15px;
     list-style-type: none;
+    list-style: none;
+    text-decoration: none;
     padding: 0;
     margin-top: 7px;
     margin-left: -134px;
     /* margin-right: 35px; */
+  }
+
+  .dropdown-content a {
+    font-size: 15px;
   }
 
   .nav-links li {
