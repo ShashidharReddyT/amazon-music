@@ -105,7 +105,7 @@ const Navbar = React.memo(() => {
               </Link>
 
               <ul className="dropdown-content">
-                <li>
+                <li className='navlinksmusic'>
                   <Link to="/music"> Music</Link>
                 </li>
                 <li>
