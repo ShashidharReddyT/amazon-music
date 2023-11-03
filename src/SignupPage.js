@@ -78,11 +78,7 @@ function SignupPage() {
                     <br />
                     <label>
                         <strong>Password</strong>
-                        <span>
-                            <a href="#1" id="password">
-                                Forgot your password?
-                            </a>
-                        </span>
+
                         <br />
                         <input
                             type="password"
